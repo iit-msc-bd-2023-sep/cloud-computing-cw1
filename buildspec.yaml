@@ -3,7 +3,7 @@ phases:
   install:
     commands:
         - echo Logging in to Docker Hub...
-        -  docker login --username tmatheesha  --password 'Livelongkodde19%'
+        - $(aws secretsmanager get-secret-value --secret-id docker_hub --query 'docker_hub_pwd' --output text | docker login --username tmatheesha  --password-stdin)
         - echo Logging in to Amazon ECR...
         - aws --version
         - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
@@ -13,8 +13,6 @@ phases:
         - kubectl version --short --client
         - chmod +x ./kubectl
         - kubectl version --short --client
-        - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-cluster-production
-        - cat $HOME/.kube/config # Debugging command
   pre_build:
     commands:
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-cluster-production
@@ -33,7 +31,7 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker images...
-      - REPO_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAILT_REGION.amazonaws.com/$IMAGE_REPO_NAME
+      - REPO_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:$TAG
       - echo Applying changes to deployment
