@@ -11,6 +11,8 @@ phases:
         - kubectl version --short --client
         - chmod +x ./kubectl
         - kubectl version --short --client
+        - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-cluster-production
+        - cat $HOME/.kube/config # Debugging command
   pre_build:
     commands:
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-cluster-production
