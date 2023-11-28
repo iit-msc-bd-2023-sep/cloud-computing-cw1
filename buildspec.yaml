@@ -36,5 +36,10 @@ phases:
       - kubectl -n temp-calculator set image deployment/temperature-api temperature-api=$REPOSITORY_URI:$TAG
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' "$CONTAINER_NAME" "$REPO_URI:$IMAGE_TAG" | tee imagedefinitions.json
+      - echo $REPOSITORY_URI
+      - echo $IMAGE_TAG
+      - echo Writing image definitions file...
+      - printf '[{"name":"%s","imageUri":"%s"}]' "$CONTAINER_NAME" "$REPOSITORY_URI:$IMAGE_TAG" | tee imagedefinitions.json
+      - ls -l
 artifacts:
   files: imagedefinitions.json
