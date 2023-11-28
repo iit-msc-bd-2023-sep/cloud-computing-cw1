@@ -33,7 +33,7 @@ phases:
       - docker push $REPOSITORY_URI:$IMAGE_TAG
       - docker push $REPOSITORY_URI:$TAG
       - echo Applying changes to deployment
-      - kubectl -n temp-calculator set image deployment/temperature-api temperature-api=$REPOSITORY_URI:$TAG
+      - kubectl -n cloud-computing-cw1  set image deployment/developer-iq developer-iq=$REPOSITORY_URI:$TAG
       - echo Writing image definitions file...
       - printf '[{"name":"%s","imageUri":"%s"}]' "$CONTAINER_NAME" "$REPO_URI:$IMAGE_TAG" | tee imagedefinitions.json
       - echo $REPOSITORY_URI
