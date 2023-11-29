@@ -6,7 +6,8 @@ phases:
 #        - $(aws secretsmanager get-secret-value --secret-id docker_hub_user_name --query 'docker_hub_pwd' --output text | docker login --username tmatheesha  --password-stdin)
         - DOCKER_USERNAME=$(aws secretsmanager get-secret-value --secret-id docker_hub --query 'SecretString' --output text | jq -r '.docker_hub_user_name')
         - DOCKER_PASSWORD=$(aws secretsmanager get-secret-value --secret-id docker_hub --query 'SecretString' --output text | jq -r '.docker_hub_pwd')
-        - $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+#        - $DOCKER_PASSWORD | docker login --username $DOCKER_USERNAME --password-stdin
+        - docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
         - echo Logging in to Amazon ECR...
         - aws --version
         - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
