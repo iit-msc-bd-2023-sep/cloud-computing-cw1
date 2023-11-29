@@ -3,7 +3,8 @@ phases:
   install:
     commands:
         - echo Logging in to Docker Hub...
-        - $(aws secretsmanager get-secret-value --secret-id docker_hub_user_name --query 'docker_hub_pwd' --output text | docker login --username tmatheesha  --password-stdin)
+#        - $(aws secretsmanager get-secret-value --secret-id docker_hub_user_name --query 'docker_hub_pwd' --output text | docker login --username tmatheesha  --password-stdin)
+        - docker login --username tmatheesha  --password 'LiveLongKodde19%'
         - echo Logging in to Amazon ECR...
         - aws --version
         - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
