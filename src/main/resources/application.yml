@@ -26,9 +26,9 @@ github-api:
   Token: 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
 
 #spring.datasource.url: jdbc:mysql://host.docker.internal:3306/iit_cc_cw?createDatabaseIfNotExist=true&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8
-spring.datasource.url: jdbc:mysql://it-cc-cw.cgb3lemiktxz.us-west-2.rds.amazonaws.com:3306/iit_cc_cw?createDatabaseIfNotExist=true&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8
-spring.datasource.password: "!Qaz2wSX"
-spring.datasource.username: root
+spring.datasource.url: jdbc:mysql://aurora-instance-0.cgb3lemiktxz.us-west-2.rds.amazonaws.com:3306/iit_cc_cw?createDatabaseIfNotExist=true&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8
+spring.datasource.password: "mypassword"
+spring.datasource.username: myusername
 spring.datasource.maxActive: 20
 spring.datasource.maxIdle: 10
 spring.datasource.maxWait: 10000
