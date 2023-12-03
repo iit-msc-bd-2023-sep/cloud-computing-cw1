@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM maven:3.8.4-openjdk-17 as build
+FROM adoptopenjdk:17-jdk-hotspot as build
 
 # Copy source code to the container
 COPY src /usr/src/app/src
