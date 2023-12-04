@@ -1,7 +1,7 @@
 server:
   port: 8084
 base-url:
-  context: /com/v1.0/citymgt
+  context: /repos
 app:
   host: localhost:8084
 
