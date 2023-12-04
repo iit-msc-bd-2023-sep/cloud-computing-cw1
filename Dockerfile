@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 RUN mvn clean install -DskipTests
 
 # Stage 2: Create the runtime image
-FROM openjdk:17-jdk
+FROM eclipse-temurin:17.0.7_7-jre-alpine
 
 # Add Maintainer Info
 LABEL maintainer="tmatheesh@example.com"
