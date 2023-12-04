@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM maven:3.8.4-openjdk-17 as build
+FROM maven:3.8.4-eclipse-temurin-17 as build
 
 # Copy source code to the container
 COPY src /usr/src/app/src
