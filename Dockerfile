@@ -1,5 +1,5 @@
 # Stage 1: Build the application
-FROM adoptopenjdk:17-jdk-hotspot as build
+FROM maven:3.8.4-openjdk-17 as build
 
 # Copy source code to the container
 COPY src /usr/src/app/src
@@ -12,7 +12,7 @@ WORKDIR /usr/src/app
 RUN mvn clean install -DskipTests
 
 # Stage 2: Create the runtime image
-FROM openjdk:17-oracle
+FROM openjdk:17-jdk
 
 # Add Maintainer Info
 LABEL maintainer="tmatheesh@example.com"
