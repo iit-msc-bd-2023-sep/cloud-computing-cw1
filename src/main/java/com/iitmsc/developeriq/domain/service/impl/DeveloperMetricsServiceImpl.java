@@ -36,7 +36,11 @@ public class DeveloperMetricsServiceImpl implements DeveloperMetricsService {
         List<Map<String, Object>> responseGetForkList =  githubApiConnector.callGithubApiGetForks(githubBaseRequest.getOwner(), githubBaseRequest.getRepo());
         List<Map<String, Object>> responseGetPullRequestList =  githubApiConnector.callGithubApiGetPullRequests(githubBaseRequest.getOwner(), githubBaseRequest.getRepo());
         Metrics metrics = new Metrics();
+        metricRepository.findByOwnerAndRepo(githubBaseRequest.getOwner(), githubBaseRequest.getRepo()).ifPresent(m -> {
+            metrics.setId(m.getId());
+        });
         metrics.setOwner(githubBaseRequest.getOwner());
+        metrics.setRepo(githubBaseRequest.getRepo());
         metrics.setTotalCommits( responseGetCommitList.size());
         metrics.setTotalIssues( responseGetIssueList.size());
         metrics.setTotalForks( responseGetForkList.size());
