@@ -22,7 +22,7 @@ phases:
       - aws eks --region $AWS_DEFAULT_REGION update-kubeconfig --name eks-cluster-cc-cw1
       - cat ~/.kube/config
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
-      - TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)"
+      - TAG="$(date +%Y-%m-%d.%H.%M.%S).$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | head -c 8)-cw1"
       - echo $TAG
   build:
     commands:
