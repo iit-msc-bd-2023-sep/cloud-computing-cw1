@@ -44,7 +44,9 @@ public class GithubApiConnector extends ApiConnector{
      * @return
      */
     public List<Map<String, Object>>  callGithubApiGetIssues(String owner, String codeRepo) {
-        String url = yamlConfig.getGitHubUrlCommitList();
+        String url = yamlConfig.getGitHubUrlIssueList();
+        url = StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_OWNER, owner);
+        url = StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_CODE_REPO, codeRepo);
         return callGetApi(url);
     }
 
@@ -55,9 +57,16 @@ public class GithubApiConnector extends ApiConnector{
      * @return
      */
     public List<Map<String, Object>>  callGithubApiGetForks(String owner, String codeRepo) {
-        String url = yamlConfig.getGitHubUrlCommitList();
-        StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_OWNER, owner);
-        StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_CODE_REPO, codeRepo);
+        String url = yamlConfig.getGitHubUrlForkList();
+        url = StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_OWNER, owner);
+        url = StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_CODE_REPO, codeRepo);
+        return callGetApi(url);
+    }
+
+    public List<Map<String, Object>> callGithubApiGetPullRequests(String owner, String repo) {
+        String url = yamlConfig.getGitHubUrlForkList();
+        url = StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_OWNER, owner);
+        url = StringUtils.replace(url, Constants.GIT_HUB_URL_VARIABLE_CODE_REPO, repo);
         return callGetApi(url);
     }
 }

@@ -32,12 +32,21 @@ public class DeveloperMetricsServiceImpl implements DeveloperMetricsService {
     @Override
     public GithubBaseResponse getDeveloperMetrics(GithubBaseRequest githubBaseRequest) {
         List<Map<String, Object>> responseGetCommitList =  githubApiConnector.callGithubApiGetCommitList(githubBaseRequest.getOwner(), githubBaseRequest.getRepo());
+        List<Map<String, Object>> responseGetIssueList =  githubApiConnector.callGithubApiGetIssues(githubBaseRequest.getOwner(), githubBaseRequest.getRepo());
+        List<Map<String, Object>> responseGetForkList =  githubApiConnector.callGithubApiGetForks(githubBaseRequest.getOwner(), githubBaseRequest.getRepo());
+        List<Map<String, Object>> responseGetPullRequestList =  githubApiConnector.callGithubApiGetPullRequests(githubBaseRequest.getOwner(), githubBaseRequest.getRepo());
         Metrics metrics = new Metrics();
         metrics.setOwner(githubBaseRequest.getOwner());
         metrics.setTotalCommits( responseGetCommitList.size());
+        metrics.setTotalIssues( responseGetIssueList.size());
+        metrics.setTotalForks( responseGetForkList.size());
+        metrics.setTotalPullRequests( responseGetPullRequestList.size());
         metricRepository.save(metrics);
         GithubBaseResponse githubBaseResponse = new GithubBaseResponse();
         githubBaseResponse.setTotalCommitCount(metrics.getTotalCommits());
+        githubBaseResponse.setTotalForkCount(metrics.getTotalForks());
+        githubBaseResponse.setTotalIssueCount(metrics.getTotalIssues());
+        githubBaseResponse.setTotalPullRequestCount(metrics.getTotalPullRequests());
         githubBaseResponse.setResponseHeader(createResponseHeader(githubBaseRequest.getRequestHeader(), "Successfully retrieved metrics"));
         return githubBaseResponse;
     }

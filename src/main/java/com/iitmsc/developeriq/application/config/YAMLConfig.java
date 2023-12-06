@@ -35,6 +35,9 @@ public class YAMLConfig {
     @Value("${github-api.get-fork-list}")
     private String gitHubUrlForkList;
 
+    @Value("${github-api.get-pull-list}")
+    private String gitHubUrlPullRequestsList;
+
     @Value("${github-api.Token}")
     private String gitHubToken;
 }

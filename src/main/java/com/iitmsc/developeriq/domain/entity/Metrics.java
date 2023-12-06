@@ -34,7 +34,5 @@ public class Metrics extends AbstractEntity{
 
     private Integer totalPullRequests;
 
-    private Integer totalPullRequestsMerged;
-
-    private Integer totalPullRequestsOpen;
+    private Integer totalForks;
 }
