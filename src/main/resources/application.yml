@@ -26,7 +26,7 @@ github-api:
   get-issue-list: https://api.github.com/issues
   get-fork-list: https://api.github.com/repos/{{OWNER}}/{{CODE_REPO}}/forks
   get-pull-list: https://api.github.com/repos/{{OWNER}}/{{CODE_REPO}}/pulls
-  Token: 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
+  Token: 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
 
 
 #spring.datasource.url: jdbc:mysql://host.docker.internal:3306/iit_cc_cw?createDatabaseIfNotExist=true&serverTimezone=UTC&zeroDateTimeBehavior=convertToNull&useUnicode=yes&characterEncoding=UTF-8
